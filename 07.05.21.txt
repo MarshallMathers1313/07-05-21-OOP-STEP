@@ -1,0 +1,83 @@
+#include <iostream>
+using namespace std;
+
+//максимальная длина имени
+const int maxNameLength = 20;
+
+//число оценок
+const int markCount = 3;
+
+//структура Student
+struct Student
+{
+	//ФИО
+	char name[maxNameLength];
+	//оценки
+	int marks[markCount];
+};
+
+void printStudent(Student student)
+{
+	cout << student.name << endl;
+	cout << "Оценки: ";
+	for (int i = 0; i < markCount; i++)
+	{
+		cout << student.marks[i];
+	}
+}
+
+void inputStudent(Student& student, const char* name, const int marks[3])
+{
+	strcpy_s(student.name, maxNameLength, name);
+	for (int i = 0; i < 3; i++)
+	{
+		student.marks[i] = marks[i];
+	}
+}
+
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	Student student;
+
+	int studentMarks[3] = { 4,4,3 };
+
+	inputStudent(student, "Петров А.О", studentMarks);
+
+	printStudent(student);
+
+	return 0;
+}
+
+==========================================================================
+
+#include <iostream>
+using namespace std;
+
+//определение класса
+class Student
+{
+public:
+	//ФИО
+	char name[21];
+	//оценки
+	int marks[3];
+};
+
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+
+	//создаем объект от класса Student
+	Student student;
+	cout << "Успеваемость студента.\n\n";
+
+	//присвоение значений объекту
+	strcpy_s(student.name, 20, "Петров А.И");
+	student.marks[0] = 10;
+
+	//получение значений объекту
+	cout << student.name << ": " << student.marks[0] << endl;
+
+	return 0;
+}
